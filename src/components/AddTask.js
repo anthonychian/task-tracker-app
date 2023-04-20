@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 
-export default function AddTask() {
+export default function AddTask({ name }) {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [isDone, setIsDone] = useState(false)
@@ -46,9 +46,9 @@ export default function AddTask() {
             title,
             description,
             isDone,
-            dueDate
+            dueDate,
+            name
         });
-        console.log("Document written with ID: ", docRef.id);
         
         setTitle("")
         setDescription("")

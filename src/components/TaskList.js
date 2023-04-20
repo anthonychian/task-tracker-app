@@ -6,8 +6,10 @@ import List from '@mui/material/List';
 import Task from './Task';
 import '../css/TaskList.css'
 
-export default function TaskList() {
+export default function TaskList({ name }) {
     const [tasks, setTasks] = useState([])
+    // console.log(task.data.name)
+    console.log(name)
 
     useEffect(() => {
         const getData = async () => {
@@ -28,7 +30,10 @@ export default function TaskList() {
         <div className="container">
             <List className="task-list">
                 {tasks.map((task, idx) => (
-                    <Task key={idx} task={task} />
+                    <>
+                        {task.data.name === name && name != "" && <Task key={idx} task={task} />}
+                        {name === "" && <Task key={idx} task={task} />}
+                    </>
                 ))}
             </List>
         </div>
