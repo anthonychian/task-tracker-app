@@ -3,7 +3,7 @@ import AddTask from "./AddTask"
 import TaskList from './TaskList';
 
 export default function Dashboard() {
-  const name = "Saren"
+  const name = "Tom"
   return (
     <>
       <AddTask name={name}/>

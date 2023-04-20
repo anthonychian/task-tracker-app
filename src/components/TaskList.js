@@ -34,7 +34,6 @@ export default function TaskList({ name }) {
     }
 
     return (
-        
         <div className="TaskList">
             <div className="titleContainer">
                 <h1 className="title">{name}'s Tasks</h1>
