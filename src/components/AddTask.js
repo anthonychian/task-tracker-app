@@ -1,7 +1,7 @@
 import React, {useState } from 'react'
 import { addDoc, collection } from "firebase/firestore";
 import { db } from '../firebase_setup/firebase';
-import './AddTask.css'
+import '../css/AddTask.css'
 
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';

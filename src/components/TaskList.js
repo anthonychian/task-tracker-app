@@ -4,7 +4,7 @@ import { db } from '../firebase_setup/firebase';
 
 import List from '@mui/material/List';
 import Task from './Task';
-import './TaskList.css'
+import '../css/TaskList.css'
 
 export default function TaskList() {
     const [tasks, setTasks] = useState([])
