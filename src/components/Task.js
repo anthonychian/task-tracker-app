@@ -15,8 +15,11 @@ export default function Task({ task }) {
                         <Typography>
                             description: {task.data.description}
                         </Typography>
-                        {task.data.isDone && <Typography> status: Completed </Typography>}
-                        {!task.data.isDone && <Typography> status: In Progress </Typography>}
+                        {
+                            task.data.isDone ? 
+                            <Typography> status: Completed </Typography>
+                            : <Typography> status: In Progress </Typography>
+                        }
                         <Typography> due date: {task.data.dueDate} </Typography>
                     </>
                 }

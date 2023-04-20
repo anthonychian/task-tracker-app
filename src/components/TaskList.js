@@ -8,8 +8,6 @@ import '../css/TaskList.css'
 
 export default function TaskList({ name }) {
     const [tasks, setTasks] = useState([])
-    // console.log(task.data.name)
-    console.log(name)
 
     useEffect(() => {
         const getData = async () => {
@@ -21,21 +19,33 @@ export default function TaskList({ name }) {
                     data: doc.data()
                 });
             });
+
             setTasks(databaseInfo)
         }
         getData()
     },[])
 
+    const getTasksForCurrentUser = () => {
+        return tasks.filter(task => {
+            if (name !== "") {
+                return task.data.name === name;
+            }
+        });
+    }
+
     return (
-        <div className="container">
-            <List className="task-list">
-                {tasks.map((task, idx) => (
-                    <>
-                        {task.data.name === name && name != "" && <Task key={idx} task={task} />}
-                        {name === "" && <Task key={idx} task={task} />}
-                    </>
-                ))}
-            </List>
+        
+        <div className="TaskList">
+            <div className="titleContainer">
+                <h1 className="title">{name}'s Tasks</h1>
+            </div>
+            <div className="listContainer">
+                <List className="list">
+                    {getTasksForCurrentUser().map((task, idx) =>
+                        <Task key={idx} task={task} />
+                    )}
+                </List>
+            </div>
         </div>
     )
 }

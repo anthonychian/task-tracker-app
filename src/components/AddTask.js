@@ -36,7 +36,9 @@ export default function AddTask({ name }) {
         setIsDone(!isDone)
     }
     const handleDueDate = () => {
-        setDueDate(date_input.value)
+        if (date_input) {
+            setDueDate(date_input.value)
+        }
     }
 
     async function handleSubmit(e) {
