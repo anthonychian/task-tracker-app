@@ -1,17 +1,12 @@
 import { Typography, Button, TextField, Stack } from "@mui/material";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
 function Login() {
-    const storedName = localStorage.getItem('username');
-    const [username, setUsername] = useState(storedName ? storedName : '');
+    const [username, setUsername] = useState('');
     const [status, setStatus] = useState('typing');
     const navigate = useNavigate();
-
-    useEffect(() => {
-        localStorage.setItem('username', String(username));
-    }, [username]); 
 
     async function handleSubmit(e) {
         e.preventDefault();
