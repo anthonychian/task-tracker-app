@@ -1,9 +1,10 @@
+import React from "react";
+import Dashboard from "./components/Dashboard";
+
 function App() {
   return (
-    <div>
-      Hello World!
-    </div>
-  );
+    <Dashboard />
+  )
 }
 
 export default App;

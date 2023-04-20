@@ -1,0 +1,38 @@
+.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 500px;
+    width: 400px;
+    background-color: whitesmoke;
+    border: 2px solid #000;
+    box-shadow: 24;
+    padding: 2em;
+}
+.boxTitle {
+    padding: 0.5em;
+    text-decoration: underline;
+    text-align: center;
+    text-underline-offset: 10px;
+}
+.button {
+    padding: 2em;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.inputContainer {
+    height: 100%;
+    width: 100%;
+}
+.input {
+    padding: 1em 0 1em 0;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.input2 {
+    margin-left: 1em;
+}
+
