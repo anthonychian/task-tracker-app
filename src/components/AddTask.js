@@ -44,7 +44,7 @@ export default function AddTask({ name }) {
     async function handleSubmit(e) {
         e.preventDefault()
 
-        const docRef = await addDoc(collection(db, "tasks"), {
+        await addDoc(collection(db, "tasks"), {
             title,
             description,
             isDone,
