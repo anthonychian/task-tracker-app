@@ -9,7 +9,7 @@ const NewTaskPage = () => {
         const ref = collection(firestore,"tasks")
         function addTaskHandler(taskData){
             try{
-                addDoc(ref,{taskData}).then(history("/",{replace:true}));
+                addDoc(ref,taskData).then(history("/",{replace:true}));
                 
             }catch{
                 console.log("error");
