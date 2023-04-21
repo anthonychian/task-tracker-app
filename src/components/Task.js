@@ -6,12 +6,9 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { doc, deleteDoc, collection } from "firebase/firestore";
 import { db } from '../firebase_setup/firebase';
-import UpdateTasks from './UpdateTasks';
+import UpdateTask from './UpdateTask'
 
 export default function Task({ task }) {
-
-    const [editbox, seteditbox] = useState(false)
-    
     async function handleDelete() {
         const docRef = doc(db, "tasks", task.id);
         deleteDoc(docRef)
@@ -22,6 +19,7 @@ export default function Task({ task }) {
                 console.log(error);
             })
     }
+    const [editbox, seteditbox] = useState(false)
 
     return (
         <>
@@ -44,8 +42,9 @@ export default function Task({ task }) {
                 />
 
                 <Button variant="contained" onClick={handleDelete} type="submit">Delete</Button>
-                <Button variant="contained" onClick = {seteditbox(true)} type="submit">Edit</Button>
-                {editbox === true && <UpdateTasks task = {task} seteditbox = {seteditbox}/>}
+                <Button variant="contained" onClick={() => seteditbox(true)} type="submit">Edit</Button>
+                {editbox === true && <UpdateTask task={task} seteditbox={seteditbox} />}
+
 
 
             </ListItem>

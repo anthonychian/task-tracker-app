@@ -104,7 +104,7 @@ export default function AddTask({ name }) {
                             Due Date:
                             <input className="input2" id="date" type= "date" onChange={handleDueDate} />
                         </Typography>
-                        <Typography variant="subtitle1" className="input">
+                        <Typography variant="subtitle1" classNa me="input">
                             Status:
                             <input className="input2" id="status" type= "checkbox" value={isDone} onClick={handleStatus} />   
                         </Typography>
