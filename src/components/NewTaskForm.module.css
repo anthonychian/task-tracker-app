@@ -116,6 +116,8 @@
 .actions {
   margin-top: 1rem;
   text-align: right;
+  display: flex;
+  justify-content: space-between;
 }
 
 .actions button {

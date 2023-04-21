@@ -3,7 +3,6 @@ import {useNavigate} from 'react-router-dom'
 import { getDoc, doc, updateDoc } from 'firebase/firestore';
 import { firestore } from '../firebase';
 import classes from '../components/NewTaskForm.module.css'
-import Card from '../components/Card';
 import { useRef, useEffect,useState } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -18,6 +17,9 @@ const UpdateTaskPage = () => {
   const [status, setStatus] = useState('');
   const [title, setTitle] = useState('');
   const docRef = doc(firestore,'tasks',window.location.pathname.split('/').pop());
+  const backHandler =() =>{
+    history("/",{replace:true})
+  }
 
   useEffect(() => {
     getDoc(docRef).then((docSnap) => {
@@ -98,6 +100,7 @@ const UpdateTaskPage = () => {
       </div>
       <div className={classes.actions}>
         <button>Update Task</button>
+        <button type="button" onClick={backHandler}>Exit</button>
       </div>
     </form>
   )

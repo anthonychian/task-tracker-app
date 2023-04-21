@@ -2,4 +2,22 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    
   }
+.add{
+  height: 280px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  font-size: 30px;
+  color: #D33457;
+
+}
+.add:hover {
+  background-color: #e5e5e5;
+}

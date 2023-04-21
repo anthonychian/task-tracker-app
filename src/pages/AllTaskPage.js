@@ -2,10 +2,13 @@ import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import { firestore } from '../firebase';
 import TaskList from '../components/TaskList';
-import { Link } from 'react-router-dom';
-import classes from '../components/NewTaskForm.module.css';
+
+import { useNavigate } from 'react-router-dom';
+
+import classes from './AllTaskPage.module.css';
 
 function AllTaskPage() {
+  const history = useNavigate();
   const [tasks, setTasks] = useState([]);
   const [sortBy, setSortBy] = useState(null);
   const [sortOrder, setSortOrder] = useState('asc');
@@ -53,21 +56,23 @@ function AllTaskPage() {
     window.localStorage.setItem("user", '""')
     window.location.reload();
   }
-
+  const handleNewTask=()=>{
+    history("/new-task",{replace:true})
+  }
   return (
-    <>
-      <div>
-        <button onClick={() => handleSortBy('date')}>Sort by Date</button>
-        <button onClick={() => handleSortBy('title')}>Sort by Title</button>
-        <button onClick={() => handleSortBy('status')}>Sort by Status</button>
-        <button onClick={handleLogout}>Logout</button>
+    <div className={classes.container}>
+      <div className={classes.header}>
+        <div>
+          <button className={classes.button} onClick={() => handleSortBy('date')}>Sort by Date</button>
+          <button className={classes.button} onClick={() => handleSortBy('title')}>Sort by Title</button>
+          <button className={classes.button} onClick={() => handleSortBy('status')}>Sort by Status</button>
+          </div>
+          <div>
+          <button className={classes.logout} onClick={handleLogout}>Logout</button>
+          </div>
       </div>
       <TaskList tasks={tasks} />
-      <Link to={`/new-task`} className={classes.button}>
-        Add Task
-      </Link>
-      
-    </>
+    </div>
   );
 }
 

@@ -1,43 +1,46 @@
-import { Link } from 'react-router-dom';
 import classes from './TaskItem.module.css';
 import { doc,deleteDoc } from 'firebase/firestore';
 import { firestore } from '../firebase';
 import Card from './Card';
-import {useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom';
+
 function TaskItem(props) {
   const history = useNavigate();
   const { id, title, description, status, duedate } = props;
+  
   const handleDelete = () => {
     const docRef = doc(firestore, 'tasks', id);
-  deleteDoc(docRef)
-    .then(() => {
-      window.location.reload();
-    })
-    .catch((error) => {
-      console.log('Error deleting task: ', error);
-    });
-    
+    deleteDoc(docRef)
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log('Error deleting task: ', error);
+      });
   }
+  const handleUpdate = () => {
+    history(`/tasks/${id}`);
+  };
+  
   return (
-    <li className={classes.item}>
       <Card>
-        <div className={classes.content}>
-          <h3>{title}</h3>
-          <p>{description}</p>
-          <p>Status: {status}</p>
-          <p>Due Date: {duedate}</p>
+        <div className={`${classes.content} ${classes.center}`}>
+        <h2 className={classes.title}>{title}</h2>
+        <div className={classes.meta}> 
+        <div className={classes.duedate}>{new Date(duedate).toLocaleDateString()}</div>
+        <div className={classes.status}>{status}</div>
+        <p className={classes.description}>{description}</p>
+      </div>
         </div>
         <div className={classes.actions}>
-          <Link to={`/tasks/${id}`} className={classes.button}>
+        <button className={`${classes.button} ${classes.left}`} onClick={handleUpdate}>
             Update
-          </Link>
-          
-        </div>
-        <div className={classes.actions}>
-        <button onClick={handleDelete}>Delete</button>
+          </button>
+          <button className={`${classes.deleteButton} ${classes.right}`} onClick={handleDelete}>
+            Delete
+          </button>
         </div>
       </Card>
-    </li>
   );
 }
 

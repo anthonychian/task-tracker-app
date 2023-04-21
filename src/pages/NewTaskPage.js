@@ -16,9 +16,9 @@ const NewTaskPage = () => {
             }
         }
         
-      return <section>
-         <NewTaskForm onAddTask={addTaskHandler}/>
-      </section>;
+        return (
+              <NewTaskForm onAddTask={addTaskHandler} />
+          );
     }
 
 export default NewTaskPage
