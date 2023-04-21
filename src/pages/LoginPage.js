@@ -32,7 +32,6 @@ const LoginPage = () => {
         </p>
       </div>
       <div className={classes.login}>
-        {/* <label htmlFor='username'>Username</label> */}
         <input type='email' id='username' placeholder='username' value={username} onChange={handleUsernameChange} />
         <button onClick={handleButtonClick}>Set User</button>
       </div>

@@ -1,15 +1,28 @@
 .form {
-  padding: 1rem;
+  margin-top: 3%;
+  margin-left: 25%;
+  margin-right: 25%;
+  font: inherit;
+  justify-content: center;
+  padding: 5%;
+  background-color: #f9f7f5;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.form h2 {
+  margin-top: 0;
+  margin-bottom: 5%;
 }
 
 .control {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .control label {
   display: block;
   font-weight: bold;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .control input,
@@ -17,8 +30,8 @@
 .control select {
   display: block;
   font: inherit;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  border-radius: 8px;
+  border: 1px solid #98a9b3;
   padding: 0.25rem;
   width: 100%;
 }
@@ -83,7 +96,7 @@
   top: 50%;
   right: 0.75rem;
   transform: translateY(-50%);
-  border: solid #000;
+  border: solid #98a9b3;
   border-width: 0 1px 1px 0;
   padding: 3px;
   pointer-events: none;
@@ -95,7 +108,7 @@
   top: 50%;
   right: 0.5rem;
   transform: translateY(-50%);
-  border: solid #000;
+  border: solid #98a9b3;
   border-width: 0 1px 1px 0;
   padding: 3px;
   pointer-events: none;
@@ -108,16 +121,15 @@
 .actions button {
   font: inherit;
   cursor: pointer;
-  background-color: #77002e;
+  background-color: #d33457;
   color: white;
   padding: 0.5rem 1.5rem;
-  border: 1px solid #77002e;
-  border-radius: 4px;
+  border-radius: 8px;
   font-weight: bold;
+  border: 0;
 }
 
 .actions button:hover,
 .actions button:active {
-  background-color: #a50e48;
-  border-color: #a50e48;
+  background-color: #1e3f58;
 }

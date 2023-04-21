@@ -17,7 +17,6 @@ const NewTaskPage = () => {
         }
         
       return <section>
-        <h1>Add New Task</h1>
          <NewTaskForm onAddTask={addTaskHandler}/>
       </section>;
     }
