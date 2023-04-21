@@ -9,8 +9,14 @@ function TaskItem(props) {
   const { id, title, description, status, duedate } = props;
   const handleDelete = () => {
     const docRef = doc(firestore, 'tasks', id);
-    deleteDoc(docRef)
-    .then(window.location.reload())
+  deleteDoc(docRef)
+    .then(() => {
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.log('Error deleting task: ', error);
+    });
+    
   }
   return (
     <li className={classes.item}>

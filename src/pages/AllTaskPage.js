@@ -1,4 +1,4 @@
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import { firestore } from '../firebase';
 import TaskList from '../components/TaskList';
@@ -8,21 +8,23 @@ import classes from '../components/NewTaskForm.module.css';
 function AllTaskPage() {
   const [tasks, setTasks] = useState([]);
   const [sortBy, setSortBy] = useState(null);
-
+  const [sortOrder, setSortOrder] = useState('asc');
   useEffect(() => {
-    let taskCollection;
-
+    const user = window.localStorage.getItem('user');
+    const taskCollection = query(collection(firestore, 'tasks'), where('user', '==', user));
+  
+    let sortedCollection;
     if (sortBy === 'date') {
-      taskCollection = query(collection(firestore, 'tasks'), orderBy('duedate'));
+      sortedCollection = query(taskCollection, orderBy('duedate', sortOrder));
     } else if (sortBy === 'title') {
-      taskCollection = query(collection(firestore, 'tasks'), orderBy('title'));
+      sortedCollection = query(taskCollection, orderBy('title', sortOrder));
     } else if (sortBy === 'status') {
-      taskCollection = query(collection(firestore, 'tasks'), orderBy('status'));
+      sortedCollection = query(taskCollection, orderBy('status', sortOrder));
     } else {
-      taskCollection = collection(firestore, 'tasks');
+      sortedCollection = taskCollection;
     }
-
-    getDocs(taskCollection)
+  
+    getDocs(sortedCollection)
       .then((querySnapshot) => {
         const taskList = [];
         querySnapshot.forEach((doc) => {
@@ -37,11 +39,20 @@ function AllTaskPage() {
       .catch((error) => {
         console.log('Error getting tasks: ', error);
       });
-  }, [sortBy]);
+  }, [sortBy, sortOrder]);
 
   const handleSortBy = (value) => {
-    setSortBy(value);
+    if (sortBy === value) {
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortBy(value);
+      setSortOrder('asc');
+    }
   };
+  const handleLogout = () => {
+    window.localStorage.setItem("user", '""')
+    window.location.reload();
+  }
 
   return (
     <>
@@ -49,11 +60,13 @@ function AllTaskPage() {
         <button onClick={() => handleSortBy('date')}>Sort by Date</button>
         <button onClick={() => handleSortBy('title')}>Sort by Title</button>
         <button onClick={() => handleSortBy('status')}>Sort by Status</button>
+        <button onClick={handleLogout}>Logout</button>
       </div>
       <TaskList tasks={tasks} />
       <Link to={`/new-task`} className={classes.button}>
         Add Task
       </Link>
+      
     </>
   );
 }

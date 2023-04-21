@@ -3,6 +3,7 @@ import Card from './Card'
 import classes from './NewTaskForm.module.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import TimePicker from 'react-time-picker';
 import { useState } from "react";
 
 function NewTaskForm(props) {
@@ -24,6 +25,7 @@ function NewTaskForm(props) {
       duedate: enteredDuedate,
       status: enteredStatus,
       description: enteredDescription,
+      user: window.localStorage.getItem('user')
     };
     props.onAddTask(TaskData);
   }
